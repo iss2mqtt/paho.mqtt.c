@@ -2742,18 +2742,18 @@ exit:
 
 void MQTTClient_yield_sleepParam(int timeoutInMilliseconds)
 {
-  START_TIME_TYPE start = MQTTClient_start_clock();
+  START_TIME_TYPE start = MQTTTime_start_clock();
   unsigned long elapsed = 0L;
   int rc = 0;
 
   FUNC_ENTRY;
   if (running)
   {
-    MQTTClient_sleep(timeoutInMilliseconds);
+    MQTTTime_sleep(timeoutInMilliseconds);
     goto exit;
   }
 
-  elapsed = MQTTClient_elapsed(start);
+  elapsed = MQTTTime_elapsed(start);
   do
   {
     int sock = -1;
@@ -2766,7 +2766,7 @@ void MQTTClient_yield_sleepParam(int timeoutInMilliseconds)
         MQTTClient_disconnect_internal(m, 0);
     }
     Thread_unlock_mutex(mqttclient_mutex);
-    elapsed = MQTTClient_elapsed(start);
+    elapsed = MQTTTime_elapsed(start);
   }
   while (elapsed < timeoutInMilliseconds);
 exit:

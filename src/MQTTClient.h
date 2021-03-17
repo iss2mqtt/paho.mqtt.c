@@ -1318,7 +1318,7 @@ LIBMQTT_API int MQTTClient_getPendingDeliveryTokens(MQTTClient handle, MQTTClien
   * not necessary to call this function.
   * @param timeoutInMilliseconds The length of time to sleep in miliseconds.
   */
-DLLExport void MQTTClient_yield_sleepParam(int timeoutInMilliseconds);
+LIBMQTT_API void MQTTClient_yield_sleepParam(int timeoutInMilliseconds);
 
 /**
   * When implementing a single-threaded client, call this function periodically
